@@ -1,0 +1,11 @@
+Scan Number,Patient Age,Patient Sex,nodule_y,nodule_x,nodule_z,Diagnosis
+ct-training-be001,73,F,296,405,169,benign
+ct-training-be002,69,F,268,184,117,benign
+ct-training-be006,49,M,266,449,241,benign
+ct-training-be007,66,M,206,385,194,benign
+ct-training-be010,66,M,336,120,69,benign
+ct-training-lc001,64,F,325,120,135,malignant
+ct-training-lc002,64,M,359,139,70,malignant
+ct-training-lc003,80,M,323,375,70,malignant
+ct-training-lc008,53,F,328,95,65,malignant
+ct-training-lc009,63,F,299,145,63,malignant
