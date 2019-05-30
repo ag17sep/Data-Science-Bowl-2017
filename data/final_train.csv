@@ -9,3 +9,53 @@ ct-training-lc002,64,M,359,139,70,malignant
 ct-training-lc003,80,M,323,375,70,malignant
 ct-training-lc008,53,F,328,95,65,malignant
 ct-training-lc009,63,F,299,145,63,malignant
+lungx-ct001,79,M,135,303,142,Benign nodule
+lungx-ct002,79,F,330,348,205,Benign nodule
+lungx-ct003,84,F,374,374,146,Primary lung cancer
+lungx-ct004,50,F,328,242,80,Primary lung cancer
+lungx-ct005,62,F,164,420,138,Benign nodule
+lungx-ct006,64,M,381,284,50,Primary lung cancer
+lungx-ct007,73,F,170,355,188,Benign nodule
+lungx-ct008,42,F,172,208,139,Benign nodule
+lungx-ct009,65,F,175,209,164,Benign nodule
+lungx-ct010,37,M,164,163,139,Benign nodule
+lungx-ct011,53,F,179,335,56,Benign nodule
+lungx-ct012,59,F,131,360,88,Primary lung cancer
+lungx-ct013,37,F,373,240,91,Benign nodule
+lungx-ct014,74,M,163,212,204,Primary lung cancer
+lungx-ct015,78,M,353,413,124,Primary lung cancer
+lungx-ct016,70,F,344,358,62,Primary lung cancer
+lungx-ct017,18,M,354,355,178,Benign nodule
+lungx-ct018,61,M,116,242,137,Benign nodule
+lungx-ct019,60,M,128,362,131,Primary lung cancer 
+lungx-ct020,68,M,379,285,179,Benign nodule
+lungx-ct021,57,F,296,267,76,Primary lung cancer 
+lungx-ct022,56,M,159,355,68,Primary lung cancer 
+lungx-ct023,79,F,332,277,61,Benign nodule
+lungx-ct024,29,M,107,284,197,Benign nodule
+lungx-ct025,64,F,134,300,214,Primary lung cancer 
+lungx-ct026,69,F,427,316,138,Primary lung cancer 
+lungx-ct027,34,F,357,250,97,Benign nodule
+lungx-ct028,52,M,117,312,135,Benign nodule
+lungx-ct029,60,F,179,369,73,Benign nodule
+lungx-ct030,46,F,118,310,104,Benign nodule
+lungx-ct031,59,F,130,230,70,Benign nodule
+lungx-ct032,44,F,392,341,239,Primary lung cancer 
+lungx-ct033,57,M,188,312,113,Primary lung cancer 
+lungx-ct034,60,F,128,274,150,Benign nodule
+lungx-ct035,47,M,154,355,268,Benign nodule
+lungx-ct036,68,F,150,392,220,Benign nodule
+lungx-ct037,61,M,374,315,62,Benign nodule
+lungx-ct038,51,M,184,249,197,Benign nodule
+lungx-ct039,65,F,149,380,242,Benign nodule
+lungx-ct040,81,M,336,353,189,Primary lung cancer 
+lungx-ct041,83,F,107,292,172,Primary lung cancer 
+lungx-ct042,51,F,326,391,178,Primary lung cancer 
+lungx-ct043,65,F,440,289,230,Benign nodule
+lungx-ct044,68,F,136,298,90,Primary lung cancer 
+lungx-ct045,55,M,314,216,148,Primary lung cancer 
+lungx-ct046,84,F,309,211,61,Primary lung cancer 
+lungx-ct047,54,F,199,306,53,Primary lung cancer 
+lungx-ct048,51,M,368,312,115,Primary lung cancer 
+lungx-ct049,50,M,398,296,71,Benign nodule
+lungx-ct050,77,M,385,316,41,Primary lung cancer 
