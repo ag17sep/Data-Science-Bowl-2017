@@ -3,14 +3,12 @@ import pandas as pd
 import os
 import random
 from keras.optimizers import Adam, SGD
-from keras.layers import Input, merge, Conv3D, MaxPooling3D, UpSampling3D, LeakyReLU, Flatten, Dense, Dropout, ZeroPadding3D, AveragePooling3D, Activation, concatenate
+from keras.layers import Input, Conv3D, MaxPooling3D, LeakyReLU, Flatten, Dense, Dropout, AveragePooling3D, concatenate
 from keras.models import Model
-from keras.metrics import binary_accuracy, binary_crossentropy, mean_squared_error, mean_absolute_error
+from keras.metrics import binary_crossentropy, mean_absolute_error
 from keras import backend as K
-from keras.callbacks import ModelCheckpoint, Callback, LearningRateScheduler
 import helper_functions
 import setting
-import matplotlib.pyplot as plt
 
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
@@ -32,47 +30,15 @@ class CustomLoss(object):
     
     def __init__(self):
         
-        self.__name__ = 'custom_loss'
-        #self.lambda_coord = 1.0
-        #self.lambda_obj = 5.0
-        #self.lambda_noobj = 1.0
-        #self.lambda_class = 1.0
-        
-    #def coord_loss(self, y_true, y_pred):
-    #    zaxis_true = y_true[...,2]
-    #    zaxis_pred = y_pred[...,2]
-    #    yaxis_true = y_true[...,3]
-    #    yaxis_pred = y_pred[...,3]
-    #    xaxis_true = y_true[...,4]
-    #    xaxis_pred = y_pred[...,4]
-        
-    #    indicator_coord = K.expand_dims(y_true[...,2],axis=-1) * self.lambda_coord
-    #    loss_x = K.sum(K.square(xaxis_true - xaxis_pred) * indicator_coord)
-    #    loss_y = K.sum(K.square(yaxis_true - yaxis_pred) * indicator_coord)
-    #    loss_z = K.sum(K.square(zaxis_true - zaxis_pred) * indicator_coord)
-        
-    #    return (loss_x + loss_y + loss_z)/30
-    
+        self.__name__ = 'custom_loss' 
     def obj_loss(self, y_true, y_pred):
-         #indicator_noobj = (y_true[...,1]) * self.lambda_noobj
-         #indicator_noobj = np.reshape(indicator_noobj,(-1,1))
-         #indicator_obj = y_true[...,0] * self.lambda_obj
-         #indicator_obj = np.reshape(indicator_obj,(-1,1))
-         #indicator_noobj = np.reshape(indicator_noobj,(-1,1))
-         #indicator_o = np.concatenate([indicator_obj,indicator_noobj],axis=-1)
-    #    loss_obj = K.sum(K.square(y_true[...,0] - y_pred[...,0]) * indicator_o)
-    #    return loss_obj
          loss_obj = K.binary_crossentropy(y_true[...,0],y_pred[...,0]) #* indicator_o
          return loss_obj
     
     def class_loss(self, y_true, y_pred):
-        #indicator_class = y_true[...,0] * self.lambda_class
         loss_class = K.binary_crossentropy(y_true[...,1],y_pred[...,1]) #* indicator_class
         return loss_class
     
-    #def l_coord(self, y_true, y_pred):
-     #   return self.coord_loss(y_true, y_pred)
-
     def l_obj(self, y_true, y_pred):
         return self.obj_loss(y_true, y_pred)
 
@@ -81,14 +47,11 @@ class CustomLoss(object):
     
     def __call__(self, y_true, y_pred):
         
-       # total_coord_loss = self.coord_loss(y_true, y_pred)
         total_obj_loss = self.obj_loss(y_true, y_pred)
         total_class_loss = self.class_loss(y_true, y_pred)
         
-        loss = total_obj_loss + total_class_loss# + total_coord_loss 
+        loss = total_obj_loss + total_class_loss 
         return loss
-
-        
 
 def data_generator(src_path,batch_size):
     img_list = list()

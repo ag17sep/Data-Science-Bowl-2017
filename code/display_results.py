@@ -49,5 +49,3 @@ def make_gifs(image_path = setting.TRAINING_SET , csv_src_path=os.path.join(sett
         
         my_clip = mpy.ImageSequenceClip(images_list,fps=10)
         my_clip.write_gif(os.path.join(setting.MAIN_DIRECTORY,ID+'.gif'),fps=10)
-        
-make_gifs()

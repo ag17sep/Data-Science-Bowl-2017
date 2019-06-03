@@ -5,7 +5,6 @@ import helper_functions
 import setting
 import neural_network 
 import extracting_data
-from functools import reduce 
 
 STEP = 20
 CUBE_SIZE = 32
@@ -38,8 +37,7 @@ def predict_nodules(images_path, load_weight_path=os.path.join(setting.MODEL_WEI
         
         predict_vol_shape = np.array(predict_vol_shape_list)
         predict_vol = np.zeros(predict_vol_shape,dtype=np.float)
-        batch_size = 5 #reduce((lambda x,y: x*y), predict_vol_shape_list)
-        #print(batch_size)
+        batch_size = 5 
         patient_predictions_csv = []
         batch_list = []
         batch_list_coord = []
@@ -63,7 +61,6 @@ def predict_nodules(images_path, load_weight_path=os.path.join(setting.MODEL_WEI
                                 p_z = np.round(p_z * STEP + CUBE_SIZE/2)
                                 p_y = np.round(p_y * STEP + CUBE_SIZE/2)
                                 p_x = np.round(p_x * STEP + CUBE_SIZE/2)
-                                #print(p_z, p_y, p_x)
                                 patient_predictions_csv_line = [ID, p_z, p_y, p_x, p[i,1]]
                                 patient_predictions_csv.append(patient_predictions_csv_line)
                         
@@ -77,6 +74,3 @@ def predict_nodules(images_path, load_weight_path=os.path.join(setting.MODEL_WEI
             orig = pd.read_csv(os.path.join(csv_target_path,ID+'.csv'))
             orig.append(df)
         
-
-
-predict_nodules(setting.TRAINING_SET)

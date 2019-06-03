@@ -2,17 +2,6 @@ import numpy as np
 import pandas as pd
 import cv2
 import random
-import os
-import extracting_data
-from skimage.measure import label, regionprops, marching_cubes_lewiner
-from skimage.morphology import disk, dilation, binary_erosion, binary_closing
-from skimage.filters import roberts, sobel
-from skimage.segmentation import clear_border
-from scipy import ndimage as ndi
-from scipy.ndimage.interpolation import map_coordinates
-from scipy.ndimage.filters import gaussian_filter
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 
 CUBE_SIZE = 32
 
@@ -44,7 +33,6 @@ def save_image(target_path,image,rows,cols):
         for col in range(cols):
             target_y = row*img_height
             target_x = col*img_width
-            #print(row,col,target_x,target_y)
             res[target_y:target_y+img_height,target_x:target_x+img_width] = image[row*col + col]
     
     cv2.imwrite(target_path+'.jpg',res)
@@ -113,7 +101,6 @@ def random_scale_img(img, xy_range, lock_xy=False):
         scale_y = scale_x
     
     org_height, org_width = img.shape[1:3]
-    #print(org_height, org_width)
     xy_range.last_x = scale_x
     xy_range.last_y = scale_y
     
@@ -121,7 +108,6 @@ def random_scale_img(img, xy_range, lock_xy=False):
     for i in range(img.shape[0]):
         scaled_width = int(org_width * scale_x)
         scaled_height = int(org_height * scale_y)
-        #print(scaled_height, scaled_width)
         scaled_img = cv2.resize(img[i], (scaled_width,scaled_height), interpolation=cv2.INTER_CUBIC)
         if scaled_width < org_width:
             extend_left = (org_width - scaled_width) / 2
@@ -193,64 +179,3 @@ def random_flip_img(img, horizontal_chance=0, vertical_chance=0):
     return res
                 
 
-def plot_3d(image, threshold=-300):
-
-    p = image.transpose(2,1,0)
-    
-    verts, faces, _, _ = marching_cubes_lewiner(p, threshold)
-
-    fig = plt.figure(figsize=(10, 10))
-    ax = fig.add_subplot(111, projection='3d')
-
-    mesh = Poly3DCollection(verts[faces], alpha=0.70)
-    face_color = [0.45, 0.45, 0.75]
-    mesh.set_facecolor(face_color)
-    ax.add_collection3d(mesh)
-
-    ax.set_xlim(0, p.shape[0])
-    ax.set_ylim(0, p.shape[1])
-    ax.set_zlim(0, p.shape[2])
-
-    plt.show()
-    
-def largest_label_volume(im, bg=-1):
-    vals, counts = np.unique(im, return_counts=True)
-
-    counts = counts[vals != bg]
-    vals = vals[vals != bg]
-
-    if len(counts) > 0:
-        return vals[np.argmax(counts)]
-    else:
-        return None
-    
-def segment_lung_mask(image, fill_lung_structures=True):
-
-    binary_image = np.array(image > -320, dtype=np.int8)+1
-    labels = label(binary_image)
-    
-    background_label = labels[0,0,0]
-
-    binary_image[background_label == labels] = 2
-
-    if fill_lung_structures:
-        for i, axial_slice in enumerate(binary_image):
-            axial_slice = axial_slice - 1
-            labeling = label(axial_slice)
-            l_max = largest_label_volume(labeling, bg=0)
-            
-            if l_max is not None: 
-                binary_image[i][labeling != l_max] = 1
-
-    binary_image -= 1 
-    binary_image = 1-binary_image
-    
-    labels = label(binary_image, background=0)
-    l_max = largest_label_volume(labels, bg=0)
-    if l_max is not None:
-        binary_image[labels != l_max] = 0
- 
-    return binary_image
-
-
-    

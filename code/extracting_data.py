@@ -15,7 +15,6 @@ def load_patient(PathToDataset=setting.TRAINING_SET):
 
     patients = defaultdict(lambda : list())   
     Patient_IDs = os.listdir(PathToDataset)
-    Patient_IDs = Patient_IDs[:7]
     for ID in Patient_IDs:
         for dirpath, subdir, filenames in os.walk(os.path.join(PathToDataset,ID)):
             for file in filenames:
@@ -26,7 +25,7 @@ def load_patient(PathToDataset=setting.TRAINING_SET):
         Patients_array[ID] = [pydicom.read_file(file) for file in patients[ID]]
         Patients_array[ID].sort(key = lambda x: int(x.InstanceNumber))
         
-    return Patients_array
+    return Patients_array, Patient_IDs
 
 
 def get_pixel_hu(patient_array):
@@ -55,7 +54,7 @@ def resample(patient_array,image,new_spacing=[1,1,1]):
     return new_image, real_resize_factor
 
 def generate_data(PathToDataset=setting.TRAINING_SET,dataset='Train'):   
-    Patient_Array = load_patient(PathToDataset)
+    Patient_Array, _ = load_patient(PathToDataset)
     Patient_Info = pd.read_csv(os.path.join(setting.DATA_PATH,"Final_"+dataset+".csv"))
     
     for index, patient in Patient_Info.iterrows():
