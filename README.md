@@ -56,4 +56,5 @@ numpy==1.14.3
 
 # Results
 
-                                ![](https://github.com/ag17sep/Data-Science-Bowl-2017/result/ct-training-be001.gif)
+                 <img src="result/ct-training-be001.gif" width="40" height="40" />
+
