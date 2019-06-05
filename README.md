@@ -56,5 +56,4 @@ numpy==1.14.3
 
 # Results
 
-                 <img src="result/ct-training-be001.gif" width="40" height="40" />
-
+![RESULT](result/ct-training-be001.gif)
