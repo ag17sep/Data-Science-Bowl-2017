@@ -52,8 +52,8 @@ numpy==1.14.3
 
 2. Install all the dependencies given in the [requirements.txt](code/requirements.txt).
 
-            **pip install -r requirements.txt**
+                 pip install -r requirements.txt
 
 # Results
 
-                                ![](result/ct-training-be001.gif)
+                                ![](https://github.com/ag17sep/Data-Science-Bowl-2017/result/ct-training-be001.gif)
