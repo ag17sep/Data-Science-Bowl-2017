@@ -27,14 +27,23 @@ The approach taken by me consists of the following steps. For a more detailed ex
 # Dependencies
 
 pandas==0.23.4
+
 pydicom==1.2.2
+
 Keras==2.2.4
+
 matplotlib==2.2.2
+
 scipy==1.1.0
+
 moviepy==0.2.3.5
+
 scikit_image==0.14.0
+
 opencv_contrib_python==4.0.0.21
+
 tensorflow_gpu==1.13.1
+
 numpy==1.14.3
 
 # Installation
@@ -42,8 +51,9 @@ numpy==1.14.3
 1. Download and install jupyter notebook. Visit this link for [installation instructions](https://jupyter.readthedocs.io/en/latest/install.html)
 
 2. Install all the dependencies given in the [requirements.txt](code/requirements.txt).
+
             **pip install -r requirements.txt**
 
 # Results
 
-                                ![](results/ct-training-be001)
+                                ![](result/ct-training-be001.gif)
